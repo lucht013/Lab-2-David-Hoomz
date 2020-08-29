@@ -2,14 +2,14 @@
 ## TODO
 * [x] Make class ```TestInteger```
     * [x] Implements ```Comparable<TestInteger>``` interface
-    * [ ] Has a integer field ```value``` (used by ```compareTo```)
-    * [ ] Has a static ```long``` field called ```counter``` to count number of object comparisons
-    * [ ] ```compareTo``` returns the result of comparisons
+    * [x] Has a integer field ```value``` (used by ```compareTo```)
+    * [x] Has a static ```long``` field called ```counter``` to count number of object comparisons
+    * [x] ```compareTo``` returns the result of comparisons
 * [ ] Implement ```quicksort``` from p.171 of Intro to Algorithms
     * [ ] Make sure it's **in place**
     * [ ] Takes an array of ```TestInteger```
     * [ ] Use compareTo instead of <
-* [ ] Write a method ```isSorted``` that takes an array of ```TestInteger``` and returns ```true``` if sorted and ```false``` otherwise
+* [x] Write a method ```isSorted``` that takes an array of ```TestInteger``` and returns ```true``` if sorted and ```false``` otherwise
 * [ ] Generate 10,000 random ```testIntegers``` from 1 to 1,000,000 and copy them into two arrays
     * [ ] sort one with ```Tim Sort``` and one with ```quicksort```.
     * [ ] do it 5 times while recording the time and total number of comparisons
