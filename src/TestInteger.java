@@ -18,4 +18,8 @@ public class TestInteger implements Comparable<TestInteger> {
         return -999;
 
     }
+
+    public long getComparisons(){
+        return counter;
+    }
 }
