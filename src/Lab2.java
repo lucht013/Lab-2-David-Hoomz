@@ -4,7 +4,7 @@ public class Lab2 {
     }
 
     public static void quicksort(TestInteger A[], int p, int r){
-        if(A[p].compareTo(A[r]) == -1){
+        if(p < r){
             int q = partition(A, p, r);
             quicksort(A, p, q-1);
             quicksort(A,p + 1, r);
@@ -16,7 +16,8 @@ public class Lab2 {
         int i = p - 1;
         TestInteger swap = new TestInteger();
         for(int j = p; j < r; j++){
-            if(A[j].compareTo(x) == -1){
+            int comparison = A[j].compareTo(x);
+            if(comparison == -1 || comparison == 0){
                i++;
                swap = A[i];
                A[i] = A[j];
