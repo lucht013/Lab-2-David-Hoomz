@@ -1,6 +1,13 @@
 import java.util.Arrays;
+import java.util.Random;
+
+
 public class Lab2 {
     public static void main(String[] args){
+        System.out.println("Comparing 10,000 random testInts from 1 to 1,000,000 5 times...");
+        normalTimSortComparison();
+
+
     }
 
     public static void quicksort(TestInteger A[], int p, int r){
@@ -37,5 +44,30 @@ public class Lab2 {
             }
         }
         return true;
+    }
+
+    public static void normalTimSortComparison(){
+        int length = 50;
+        int bound = 1000000;
+        int repititions = 5;
+        Random rand = new Random();
+        int j = 1;
+        //for(int j = 1; j<=repititions; j++){
+            TestInteger testArray[] = new TestInteger[length];
+            for (int i = 0; i < testArray.length; i++) {
+                testArray[i] = new TestInteger();
+                testArray[i].value = rand.nextInt(bound);
+            }
+            TestInteger timTestArray[] = testArray;
+            long start = System.currentTimeMillis();
+            quicksort(testArray, 0, testArray.length - 1);
+            long end = System.currentTimeMillis();
+            System.out.println("Trial " + j + " quicksort result: " + (end-start) + "ms with " + testArray[0].getComparisons() + " comparisons");
+            start = System.currentTimeMillis();
+            Arrays.sort(timTestArray);
+            end = System.currentTimeMillis();
+            System.out.println("Trial " + j + "TimSort result: " + (end-start) + " ms" + timTestArray[0].getComparisons() + " comparisons");
+            System.out.println();
+        //}
     }
 }
