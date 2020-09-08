@@ -14,7 +14,7 @@ public class Lab2 {
         if(p < r){
             int q = partition(A, p, r);
             quicksort(A, p, q-1);
-            quicksort(A,p + 1, r);
+            quicksort(A,q + 1, r);
         }
     }
 
@@ -51,8 +51,7 @@ public class Lab2 {
         int bound = 1000000;
         int repititions = 5;
         Random rand = new Random();
-        int j = 1;
-        //for(int j = 1; j<=repititions; j++){
+        for(int j = 1; j<=repititions; j++){
             TestInteger testArray[] = new TestInteger[length];
             for (int i = 0; i < testArray.length; i++) {
                 testArray[i] = new TestInteger();
@@ -66,8 +65,8 @@ public class Lab2 {
             start = System.currentTimeMillis();
             Arrays.sort(timTestArray);
             end = System.currentTimeMillis();
-            System.out.println("Trial " + j + "TimSort result: " + (end-start) + " ms" + timTestArray[0].getComparisons() + " comparisons");
+            System.out.println("Trial " + j + "TimSort result: " + (end-start) + " ms with " + timTestArray[0].getComparisons() + " comparisons");
             System.out.println();
-        //}
+        }
     }
 }
