@@ -60,19 +60,35 @@ public class Lab2 {
         Random rand = new Random();
         for(int j = 1; j<=repititions; j++){
             TestInteger testArray[] = new TestInteger[length];
+            TestInteger timTestArray[] = new TestInteger[length];
             for (int i = 0; i < testArray.length; i++) {
+                int value = rand.nextInt(bound);
                 testArray[i] = new TestInteger();
-                testArray[i].value = rand.nextInt(bound);
+                testArray[i].value = value;
+                //testArray[0].resetCounter();
+
+                timTestArray[i] = new TestInteger();
+                timTestArray[i].value = value;
+                //timTestArray[0].resetCounter();
+
             }
-            TestInteger timTestArray[] = testArray;
+
+            //testArray[0].resetCounter();
+            //timTestArray[0].resetCounter();
+
+            System.out.println("Quicksort is sorted: " + isSorted(testArray) + " with " + testArray[0].getComparisons() + " comparisons");
             long start = System.currentTimeMillis();
             quicksort(testArray, 0, testArray.length - 1);
             long end = System.currentTimeMillis();
             System.out.println("Trial " + j + " quicksort result: " + (end-start) + "ms with " + testArray[0].getComparisons() + " comparisons");
+            System.out.println("Quicksort validation: " + isSorted(testArray));
+
+            System.out.println("Timsort is sorted: " + isSorted(timTestArray) + " with " + timTestArray[0].getComparisons() + " comparisons");
             start = System.currentTimeMillis();
             Arrays.sort(timTestArray);
             end = System.currentTimeMillis();
             System.out.println("Trial " + j + " TimSort result: " + (end-start) + " ms with " + timTestArray[0].getComparisons() + " comparisons");
+            System.out.println("Timsort validation: " + isSorted(timTestArray));
             System.out.println();
         }
     }
@@ -84,22 +100,38 @@ public class Lab2 {
         Random rand = new Random();
         for(int j = 1; j<=repititions; j++){
             TestInteger testArray[] = new TestInteger[length];
+            TestInteger timTestArray[] = new TestInteger[length];
             int seed = rand.nextInt(bound-10001);
+
             testArray[0] = new TestInteger();
+            //testArray[0].resetCounter();
             testArray[0].value = seed;
-            for (int i = 1; i < testArray.length; i++) {
+
+            timTestArray[0] = new TestInteger();
+            //timTestArray[0].resetCounter();
+            timTestArray[0].value = seed;
+
+            for (int i = 1; i < length; i++) {
                 testArray[i] = new TestInteger();
                 testArray[i].value = testArray[i-1].value + 1;
+                timTestArray[i] = new TestInteger();
+                timTestArray[i].value = timTestArray[i-1].value + 1;
             }
-            TestInteger timTestArray[] = testArray;
+
+
+            System.out.println("Quicksort is sorted: " + isSorted(testArray) + " with " + testArray[0].getComparisons() + " comparisons");
             long start = System.currentTimeMillis();
             quicksort(testArray, 0, testArray.length - 1);
             long end = System.currentTimeMillis();
             System.out.println("Trial " + j + " quicksort result: " + (end-start) + "ms with " + testArray[0].getComparisons() + " comparisons");
+            System.out.println("Quicksort validation: " + isSorted(testArray));
+
+            System.out.println("Timsort is sorted: " + isSorted(testArray) + " with " + timTestArray[0].getComparisons() + " comparisons");
             start = System.currentTimeMillis();
             Arrays.sort(timTestArray);
             end = System.currentTimeMillis();
-            System.out.println("Trial " + j + "TimSort result: " + (end-start) + " ms with " + timTestArray[0].getComparisons() + " comparisons");
+            System.out.println("Timsort is sorted: " + isSorted(timTestArray));
+            System.out.println("Trial " + j + " TimSort result: " + (end-start) + " ms with " + timTestArray[0].getComparisons() + " comparisons");
             System.out.println();
         }
     }
@@ -111,25 +143,40 @@ public class Lab2 {
         Random rand = new Random();
         for(int j = 1; j<=repititions; j++){
             TestInteger testArray[] = new TestInteger[length];
+            TestInteger timTestArray[] = new TestInteger[length];
             int seed = rand.nextInt(bound-1001);
             for (int i = 0; i <= 9; i++) {
                 seed = rand.nextInt(bound-1001);
                 testArray[i * 1000] = new TestInteger();
                 testArray[i * 1000].value = seed;
+                //testArray[0].resetCounter();
+
+                timTestArray[i * 1000] = new TestInteger();
+                timTestArray[i * 1000].value = seed;
+                //timTestArray[0].resetCounter();
+
                 for(int k = 1; k < 1000; k++){
                     testArray[i * 1000 + k] = new TestInteger();
                     testArray[i * 1000 + k].value = testArray[i * 1000 + k - 1].value + 1;
+
+                    timTestArray[i * 1000 + k] = new TestInteger();
+                    timTestArray[i * 1000 + k].value = timTestArray[i * 1000 + k - 1].value + 1;
                 }
             }
-            TestInteger timTestArray[] = testArray;
+
+            System.out.println("Quicksort is sorted: " + isSorted(testArray));
+            System.out.println("Timsort is sorted: " + isSorted(timTestArray));
+
             long start = System.currentTimeMillis();
             quicksort(testArray, 0, testArray.length - 1);
             long end = System.currentTimeMillis();
             System.out.println("Trial " + j + " quicksort result: " + (end-start) + "ms with " + testArray[0].getComparisons() + " comparisons");
+            System.out.println("Quicksort validation: " + isSorted(testArray));
             start = System.currentTimeMillis();
             Arrays.sort(timTestArray);
             end = System.currentTimeMillis();
             System.out.println("Trial " + j + " TimSort result: " + (end-start) + " ms with " + timTestArray[0].getComparisons() + " comparisons");
+            System.out.println("Timsort validation: " + isSorted(timTestArray));
             System.out.println();
         }
     }
@@ -141,25 +188,41 @@ public class Lab2 {
         Random rand = new Random();
         for(int j = 1; j<=repititions; j++){
             TestInteger testArray[] = new TestInteger[length];
+            TestInteger timTestArray[] = new TestInteger[length];
             int seed = rand.nextInt(bound-1001);
             for (int i = 0; i <= 99; i++) {
                 seed = rand.nextInt(bound-101);
+
                 testArray[i * 100] = new TestInteger();
                 testArray[i * 100].value = seed;
+                //testArray[0].resetCounter();
+
+                timTestArray[i * 100] = new TestInteger();
+                timTestArray[i * 100].value = seed;
+                //timTestArray[0].resetCounter();
+
                 for(int k = 1; k < 100; k++){
                     testArray[i * 100 + k] = new TestInteger();
                     testArray[i * 100 + k].value = testArray[i * 100 + k - 1].value + 1;
+
+                    timTestArray[i * 100 + k] = new TestInteger();
+                    timTestArray[i * 100 + k].value = timTestArray[i * 100 + k - 1].value + 1;
                 }
             }
-            TestInteger timTestArray[] = testArray;
+
+            System.out.println("Quicksort is sorted: " + isSorted(testArray) + " with " + testArray[0].getComparisons() + " comparisons");
             long start = System.currentTimeMillis();
             quicksort(testArray, 0, testArray.length - 1);
             long end = System.currentTimeMillis();
             System.out.println("Trial " + j + " quicksort result: " + (end-start) + "ms with " + testArray[0].getComparisons() + " comparisons");
+            System.out.println("Quicksort validation: " + isSorted(testArray));
+
+            System.out.println("Quicksort is sorted: " + isSorted(testArray) + " with " + timTestArray[0].getComparisons() + " comparisons");
             start = System.currentTimeMillis();
             Arrays.sort(timTestArray);
             end = System.currentTimeMillis();
             System.out.println("Trial " + j + " TimSort result: " + (end-start) + " ms with " + timTestArray[0].getComparisons() + " comparisons");
+            System.out.println("Timsort validation: " + isSorted(timTestArray));
             System.out.println();
         }
     }

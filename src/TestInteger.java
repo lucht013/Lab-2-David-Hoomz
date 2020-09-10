@@ -20,6 +20,9 @@ public class TestInteger implements Comparable<TestInteger> {
     }
 
     public long getComparisons(){
-        return counter;
+        long temp = counter;
+        counter = 0;
+        return temp;
     }
+    //public static void resetCounter(){counter = 0;}
 }
